@@ -2,17 +2,9 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App";
 import { createGlobalStyle } from "styled-components";
-import { ReactDOM } from "react";
-import {
-  BrowserRouter,
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-// import { Provider } from 'react-redux';
-// import store from './store/store';
-// import Home from './pages/Home';
-// import Login from './pages/Login';
-// import Register from './pages/Register';
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import store from "./store/store";
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -115,8 +107,10 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <GlobalStyle />
-      <App />
+      <Provider store={store}>
+        <GlobalStyle />
+        <App />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );
