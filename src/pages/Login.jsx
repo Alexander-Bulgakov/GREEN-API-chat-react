@@ -5,6 +5,7 @@ import Wrapper from "../components/Wrapper";
 import { useDispatch } from "react-redux";
 import { setReqParameters } from "../store/slices/messageSlice";
 import { useNavigate } from "react-router-dom";
+import ChatContainer from "../components/ChatContainer";
 
 const StyledForm = styled.form`
   width: 100%;
@@ -32,12 +33,12 @@ const StyledInput = styled.input`
 
 const StyledButton = styled.button`
   height: 2rem;
-  background-color: #88a6eb;
+  background-color: #00a884;
   border-radius: 5px;
   font-size: 1rem;
   color: white;
   &:hover {
-    background-color: #6b92ed;
+    background-color: #02a698;
   }
 `;
 
@@ -56,7 +57,7 @@ const Login = () => {
   };
 
   return (
-    <Container>
+    <ChatContainer>
       <Wrapper>
         <StyledForm onSubmit={handleSubmit}>
           <label>
@@ -65,6 +66,7 @@ const Login = () => {
               placeholder="idInstance"
               onChange={(e) => setidInstance(e.target.value)}
               value={idInstance}
+              required
             />
           </label>
           <label>
@@ -73,12 +75,13 @@ const Login = () => {
               placeholder="apiTokenInstance"
               onChange={(e) => setApiTokenInstance(e.target.value)}
               value={apiTokenInstance}
+              required
             />
           </label>
           <StyledButton type="submit">Отправить</StyledButton>
         </StyledForm>
       </Wrapper>
-    </Container>
+    </ChatContainer>
   );
 };
 

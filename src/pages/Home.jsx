@@ -1,7 +1,13 @@
 import React from "react";
+import ChatContainer from "../components/ChatContainer";
+import ChatWrapper from "../components/ChatWrapper";
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <ChatContainer>
+      <ChatWrapper></ChatWrapper>
+    </ChatContainer>
+  );
 };
 
 export default Home;
