@@ -1,4 +1,26 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+export const sendMessage = createAsyncThunk('message/sendMessage', async (text, { getState }) => {
+  const { message } = getState();
+  console.log('text', text);
+  const body = {
+    chatId: `${message.activeContact.phoneNumber}@c.us`,
+    message: text,
+  };
+  try {
+    console.log('thunk', message);
+
+    const { data } = await axios.post(
+      `https://api.green-api.com/waInstance${message.idInstance}/SendMessage/${message.apiTokenInstance}
+    `,
+      body,
+    );
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+});
 
 const initialState = {
   idInstance: null,
@@ -36,6 +58,11 @@ const messageSlice = createSlice({
       console.log('store >> ', state.activeContact.phoneNumber);
     },
   },
+  extraReducers: {
+    [sendMessage.fulfilled]: (state, action) => {
+      console.log(action.payload);
+    },
+  },
 });
 
 export default messageSlice.reducer;
@@ -44,7 +71,7 @@ export const { setReqParameters, logout, addContact, setActiveContact } = messag
 
 export const selectIsAuth = (state) => state.message.isAuth;
 
-export const userData = (state) => state.message.idInstance;
+export const userData = (state) => state.message;
 
 export const contacts = (state) => state.message.contacts;
 

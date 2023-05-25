@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addContact } from '../store/slices/messageSlice';
 
 const StyledInputGroup = styled.form`
+  height: 3em;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,12 +13,13 @@ const StyledInputGroup = styled.form`
 
 const StyledButton = styled.button`
   background-color: #f0f2f5;
-  height: 2em;
+  height: 100%;
   padding: 0.2em 0.3em;
 `;
 const StyledInput = styled.input`
   background-color: #f0f2f5;
-  height: 2em;
+  height: 100%;
+  border-radius: 0.5em;
 `;
 
 const InputGroup = () => {
@@ -43,7 +45,7 @@ const InputGroup = () => {
   return (
     <StyledInputGroup onSubmit={handleSubmit}>
       <StyledInput
-        pattern="[0-9]{10}"
+        pattern="[0-9]{11}"
         type="text"
         value={phoneNumber}
         onChange={handleChange}

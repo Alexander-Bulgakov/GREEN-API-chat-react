@@ -28,10 +28,10 @@ const StyledButton = styled.button`
 `;
 
 export default function Navbar() {
-  const idInstance = useSelector(userData);
+  const user = useSelector(userData);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log(idInstance);
+  console.log(user);
 
   const handleLogout = () => {
     console.log('clicked');
@@ -41,7 +41,7 @@ export default function Navbar() {
   };
   return (
     <StyledNavBar>
-      <IdHeader>idInstance: {idInstance}</IdHeader>
+      <IdHeader>idInstance: {user.idInstance}</IdHeader>
       {/* <StyledButton>Выйти</StyledButton> */}
       <StyledButton onClick={handleLogout}>Выйти</StyledButton>
     </StyledNavBar>
