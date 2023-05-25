@@ -4,8 +4,8 @@ const initialState = {
   idInstance: null,
   apiTokenInstance: null,
   isAuth: false,
-  contacts: ['afdvadf', 'aefvadf'],
-  phoneNumber: null,
+  contacts: [],
+  // phoneNumber: null,
   activeContact: null,
 };
 
@@ -25,24 +25,27 @@ const messageSlice = createSlice({
       // debugger;
       state = initialState;
     },
-    setPhoneNumber: (state, action) => {
-      state.phoneNumber = action.payload;
+    addContact: (state, action) => {
+      // state.phoneNumber = action.payload;
       state.contacts.push(action.payload);
       console.log(state.contacts);
       // console.log(state.phoneNumber);
     },
     setActiveContact: (state, action) => {
-      state.activeContact = action.payload;
+      state.activeContact = state.contacts.find((contact) => contact.id === action.payload);
+      console.log('store >> ', state.activeContact.phoneNumber);
     },
   },
 });
 
 export default messageSlice.reducer;
 
-export const { setReqParameters, logout, setPhoneNumber, setActiveContact } = messageSlice.actions;
+export const { setReqParameters, logout, addContact, setActiveContact } = messageSlice.actions;
 
 export const selectIsAuth = (state) => state.message.isAuth;
 
 export const userData = (state) => state.message.idInstance;
 
 export const contacts = (state) => state.message.contacts;
+
+export const activeContact = (state) => state.message.activeContact;

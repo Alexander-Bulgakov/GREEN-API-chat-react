@@ -12,6 +12,7 @@ const StyledNavBar = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: #f0f2f5;
+  height: 3em;
 `;
 
 const IdHeader = styled.h3`

@@ -1,6 +1,6 @@
 import React from 'react';
-import { contacts } from '../store/slices/messageSlice';
-import { useSelector } from 'react-redux';
+import { contacts, activeContact, setActiveContact } from '../store/slices/messageSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { styled } from 'styled-components';
 
 const StiledListItem = styled.li`
@@ -9,14 +9,19 @@ const StiledListItem = styled.li`
   border-bottom: solid 1px #f0f2f5;
   &:hover {
     background-color: #f0f2f5;
+    cursor: pointer;
   }
 `;
 
 const ContactsList = () => {
   const storeContacts = useSelector(contacts);
+  const dispatch = useDispatch();
   console.log(storeContacts);
 
-  const handleChange = () => {};
+  const handleChange = (e, id) => {
+    console.log(id);
+    dispatch(setActiveContact(id));
+  };
 
   return (
     <ul>
@@ -24,10 +29,10 @@ const ContactsList = () => {
         ? 'Список контактов'
         : storeContacts.map((contact) => (
             <StiledListItem
-              key={contact}
-              onClick={handleChange}
+              key={contact.id}
+              onClick={(e) => handleChange(e, contact.id)}
             >
-              {contact}
+              {contact.phoneNumber}
             </StiledListItem>
           ))}
     </ul>
