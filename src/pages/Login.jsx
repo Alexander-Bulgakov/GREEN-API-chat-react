@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import Container from "../components/Container";
-import Wrapper from "../components/Wrapper";
-import { useDispatch } from "react-redux";
-import { setReqParameters } from "../store/slices/messageSlice";
-import { useNavigate } from "react-router-dom";
-import ChatContainer from "../components/ChatContainer";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import Container from '../components/Container';
+import Wrapper from '../components/Wrapper';
+import { useDispatch } from 'react-redux';
+import { setReqParameters } from '../store/slices/messageSlice';
+import { useNavigate } from 'react-router-dom';
+import ChatContainer from '../components/ChatContainer';
+import Button from '../components/Button';
 
 const StyledForm = styled.form`
   width: 100%;
@@ -43,8 +44,8 @@ const StyledButton = styled.button`
 `;
 
 const Login = () => {
-  const [idInstance, setidInstance] = useState("");
-  const [apiTokenInstance, setApiTokenInstance] = useState("");
+  const [idInstance, setidInstance] = useState('');
+  const [apiTokenInstance, setApiTokenInstance] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ const Login = () => {
     e.preventDefault();
     console.log(idInstance, apiTokenInstance);
     dispatch(setReqParameters({ idInstance, apiTokenInstance }));
-    navigate("/");
+    navigate('/');
   };
 
   return (
@@ -78,7 +79,7 @@ const Login = () => {
               required
             />
           </label>
-          <StyledButton type="submit">Отправить</StyledButton>
+          <Button type="submit">Отправить</Button>
         </StyledForm>
       </Wrapper>
     </ChatContainer>

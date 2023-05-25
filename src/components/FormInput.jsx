@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const StyledInput = styled.input`
   width: 100%;
@@ -19,7 +19,12 @@ const StyledInput = styled.input`
 `;
 
 const FormInput = ({ placeholder, type }) => {
-  return <StyledInput placeholder={placeholder} type={type} />;
+  return (
+    <StyledInput
+      placeholder={placeholder}
+      type={type}
+    />
+  );
 };
 
 export default FormInput;

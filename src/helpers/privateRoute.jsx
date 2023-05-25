@@ -1,12 +1,12 @@
-import { useSelector } from "react-redux";
-import { selectIsAuth } from "../store/slices/messageSlice";
+import { useSelector } from 'react-redux';
+import { selectIsAuth } from '../store/slices/messageSlice';
 
-const { Outlet, Navigate } = require("react-router-dom");
+const { Outlet, Navigate } = require('react-router-dom');
 
 const PrivateRoute = () => {
-  const isAuth = useSelector(selectIsAuth);
-
-  return isAuth ? <Outlet /> : <Navigate to={"login"} />;
+  // const isAuth = useSelector(selectIsAuth);
+  const isAuth = true;
+  return isAuth ? <Outlet /> : <Navigate to={'login'} />;
 };
 
 export default PrivateRoute;

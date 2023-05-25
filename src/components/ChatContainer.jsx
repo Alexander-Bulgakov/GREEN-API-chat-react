@@ -26,11 +26,6 @@ const StyledContainerHeader = styled.div`
   background-color: #00a884;
 `;
 
-const StyledBody = styled.div`
-  height: 80vh;
-  background-color: #d1d7db;
-`;
-
 const ChatContainer = ({ children }) => {
   return (
     <StyledContainer>
