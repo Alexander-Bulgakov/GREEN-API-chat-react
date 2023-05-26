@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
-import { sendMessage, activeContact } from '../store/slices/messageSlice';
+import { sendMessage, activeContact, receiveNotification } from '../store/slices/messageSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const StyledChatInputPannel = styled.div`
@@ -29,7 +29,7 @@ const StyledMessageInput = styled.input`
   padding: 5px;
 `;
 
-const StyledSendButton = styled.button`
+export const StyledButton = styled.button`
   background-color: white;
   height: 100%;
   border-radius: 0.5em;
@@ -64,10 +64,11 @@ const ChatInputPannel = () => {
           onChange={handleChange}
           value={text}
         />
-        <StyledSendButton type="submit">Отправить</StyledSendButton>
+        <StyledButton type="submit">Отправить</StyledButton>
       </StyledSendMessageForm>
     </StyledChatInputPannel>
   );
 };
 
 export default ChatInputPannel;
+receiveNotification;

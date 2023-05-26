@@ -21,6 +21,31 @@ export const sendMessage = createAsyncThunk('message/sendMessage', async (text, 
   }
 });
 
+export const receiveNotification = createAsyncThunk('message/receiveNotification', async (arg, { getState }) => {
+  try {
+    const { message } = getState();
+    const data = await axios.get(
+      `https://api.green-api.com/waInstance${message.idInstance}/receiveNotification/${message.apiTokenInstance}`,
+    );
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+});
+
+const deleteNotification = async (id, idInstance, apiTokenInstance) => {
+  try {
+    // const { message } = getState();
+    const data = await axios.delete(
+      `https://api.green-api.com/waInstance${idInstance}/deleteNotification/${apiTokenInstance}/${id}
+      `,
+    );
+    console.log(data);
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};
 const initialState = {
   idInstance: null,
   apiTokenInstance: null,
@@ -73,8 +98,26 @@ const messageSlice = createSlice({
     [sendMessage.fulfilled]: (state, action) => {
       console.log('text', action.payload.text);
       console.log('data', action.payload.data);
+      state.activeContact.messages = [];
       state.activeContact.messages.push({ side: 'send', text: action.payload.text });
       //data.idMessage
+    },
+    [receiveNotification.fulfilled]: (state, action) => {
+      // console.log('text', action.payload.text);
+
+      state.activeContact.messages.push({
+        side: 'incoming',
+        text: action.payload.data?.body?.messageData?.textMessageData?.textMessage,
+        // id: action.payload.data?.receiptId,
+      });
+      console.log('id >>> ', action.payload.data?.receiptId);
+      deleteNotification(action.payload.data?.receiptId, state.idInstance, state.apiTokenInstance);
+      console.log('receiveNotification data', action.payload.data);
+      // state.activeContact.messages.push({ side: 'send', text: action.payload.text });
+      //data.idMessage
+    },
+    [deleteNotification.fulfilled]: (state, action) => {
+      console.log('deleteNotification >>> ', action.payload);
     },
   },
 });

@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { styled } from 'styled-components';
 import { activeContact } from '../store/slices/messageSlice';
+import ChatHeaderContent from './ChatHeaderContent';
 
 const StyledChatHeader = styled.div`
   height: 3em;
@@ -14,7 +15,7 @@ const StyledChatHeader = styled.div`
 
 const ChatHeader = () => {
   const user = useSelector(activeContact);
-  return <StyledChatHeader>{!!user ? user.phoneNumber : ''}</StyledChatHeader>;
+  return <StyledChatHeader>{!!user ? <ChatHeaderContent phone={user.phoneNumber} /> : ''}</StyledChatHeader>;
 };
 
 export default ChatHeader;

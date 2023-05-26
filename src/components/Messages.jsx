@@ -5,6 +5,8 @@ import { messages } from '../store/slices/messageSlice';
 import MessagesList from './MessagesList';
 
 const StyledMessages = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
   height: 100%;
   z-index: 100;
   padding: 0.5em 1.5em;
