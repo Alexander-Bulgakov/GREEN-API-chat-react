@@ -18,7 +18,7 @@ const ContactsList = () => {
   const dispatch = useDispatch();
   console.log(storeContacts);
 
-  const handleChange = (e, id) => {
+  const handleChange = (id) => {
     console.log(id);
     dispatch(setActiveContact(id));
   };
@@ -30,7 +30,7 @@ const ContactsList = () => {
         : storeContacts.map((contact) => (
             <StiledListItem
               key={contact.id}
-              onClick={(e) => handleChange(e, contact.id)}
+              onClick={() => handleChange(contact.id)}
             >
               {contact.phoneNumber}
             </StiledListItem>

@@ -12,8 +12,7 @@ export const sendMessage = createAsyncThunk('message/sendMessage', async (text, 
     console.log('thunk', message);
 
     const { data } = await axios.post(
-      `https://api.green-api.com/waInstance${message.idInstance}/SendMessage/${message.apiTokenInstance}
-    `,
+      `https://api.green-api.com/waInstance${message.idInstance}/SendMessage/${message.apiTokenInstance}`,
       body,
     );
     return data;
@@ -26,8 +25,23 @@ const initialState = {
   idInstance: null,
   apiTokenInstance: null,
   isAuth: false,
-  contacts: [],
-  // phoneNumber: null,
+  contacts: [
+    {
+      id: 1,
+      phoneNumber: 79087801122,
+      idInstance: 'wecwecwe',
+      apiTokenInstance: 'aecvaecdcd',
+      messages: [
+        { side: 'send', text: 'hello' },
+        { side: 'send', text: 'hello' },
+        { side: 'incoming', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ' },
+        {
+          side: 'send',
+          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        },
+      ],
+    },
+  ],
   activeContact: null,
 };
 
@@ -44,14 +58,11 @@ const messageSlice = createSlice({
     },
     logout: (state, action) => {
       console.log(action);
-      // debugger;
       state = initialState;
     },
     addContact: (state, action) => {
-      // state.phoneNumber = action.payload;
       state.contacts.push(action.payload);
       console.log(state.contacts);
-      // console.log(state.phoneNumber);
     },
     setActiveContact: (state, action) => {
       state.activeContact = state.contacts.find((contact) => contact.id === action.payload);
@@ -76,3 +87,5 @@ export const userData = (state) => state.message;
 export const contacts = (state) => state.message.contacts;
 
 export const activeContact = (state) => state.message.activeContact;
+
+export const messages = (state) => state.message.activeContact?.messages;
