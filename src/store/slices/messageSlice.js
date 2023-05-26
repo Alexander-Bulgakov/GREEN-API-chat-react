@@ -15,7 +15,7 @@ export const sendMessage = createAsyncThunk('message/sendMessage', async (text, 
       `https://api.green-api.com/waInstance${message.idInstance}/SendMessage/${message.apiTokenInstance}`,
       body,
     );
-    return data;
+    return { data, text };
   } catch (e) {
     console.log(e);
   }
@@ -29,8 +29,8 @@ const initialState = {
     {
       id: 1,
       phoneNumber: 79087801122,
-      idInstance: 'wecwecwe',
-      apiTokenInstance: 'aecvaecdcd',
+      idInstance: '1101824066',
+      apiTokenInstance: 'd7f63fabbfdf480fb249d1fc245286a491c6b62a6dd84613bb',
       messages: [
         { side: 'send', text: 'hello' },
         { side: 'send', text: 'hello' },
@@ -71,7 +71,10 @@ const messageSlice = createSlice({
   },
   extraReducers: {
     [sendMessage.fulfilled]: (state, action) => {
-      console.log(action.payload);
+      console.log('text', action.payload.text);
+      console.log('data', action.payload.data);
+      state.activeContact.messages.push({ side: 'send', text: action.payload.text });
+      //data.idMessage
     },
   },
 });
