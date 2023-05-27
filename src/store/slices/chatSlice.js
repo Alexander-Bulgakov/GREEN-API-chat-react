@@ -1,17 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const sendMessage = createAsyncThunk('message/sendMessage', async (text, { getState }) => {
-  const { chatState } = getState();
-  console.log('text', text);
+export const sendMessage = createAsyncThunk('chat/sendMessage', async (text, { getState }) => {
+  const { chat } = getState();
+  console.log('text from send', text);
+  console.log('chatState fom send', chat);
   // const body = {
   //   chatId: `${message.activeContact.phoneNumber}@c.us`,
   //   message: text,
   // };
 
   //
-  const contact = chatState.contacts.find((contact) => contact.id === chatState.activeContactId);
-
+  const contact = chat.contacts.find((contact) => contact.id === chat.activeContactId);
+  console.log('contact form send', contact);
   const body = {
     chatId: `${contact.phoneNumber}@c.us`,
     message: text,
@@ -19,10 +20,10 @@ export const sendMessage = createAsyncThunk('message/sendMessage', async (text, 
   //
 
   try {
-    console.log('thunk', chatState);
+    console.log('thunk', chat);
 
     const { data } = await axios.post(
-      `https://api.green-api.com/waInstance${chatState.idInstance}/SendMessage/${chatState.apiTokenInstance}`,
+      `https://api.green-api.com/waInstance${chat.idInstance}/SendMessage/${chat.apiTokenInstance}`,
       body,
     );
     return { data, text };
@@ -33,7 +34,7 @@ export const sendMessage = createAsyncThunk('message/sendMessage', async (text, 
 
 export const receiveNotification = createAsyncThunk('message/receiveNotification', async (arg, { getState }) => {
   try {
-    const { chatState } = getState();
+    const { chat } = getState();
     const data = await axios.get(
       `https://api.green-api.com/waInstance${chatState.idInstance}/receiveNotification/${chatState.apiTokenInstance}`,
     );
