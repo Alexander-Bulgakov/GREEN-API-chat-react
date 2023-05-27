@@ -38,6 +38,7 @@ const InputGroup = () => {
       const user = {
         id: new Date().getTime(),
         phoneNumber,
+        messages: [],
       };
       dispatch(addContact(user));
     }

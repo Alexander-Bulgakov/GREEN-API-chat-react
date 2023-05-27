@@ -16,10 +16,12 @@ const StiledListItem = styled.li`
 const ContactsList = () => {
   const storeContacts = useSelector(contacts);
   const dispatch = useDispatch();
-  console.log(storeContacts);
+  console.log('storecontacts', storeContacts);
 
   const handleChange = (id) => {
     console.log(id);
+    console.log('storecontacts', storeContacts);
+
     dispatch(setActiveContact(id));
   };
 
