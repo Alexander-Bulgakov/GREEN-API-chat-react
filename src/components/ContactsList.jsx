@@ -1,5 +1,5 @@
 import React from 'react';
-import { contacts, activeContact, setActiveContact } from '../store/slices/chatSlice';
+import { getContacts, activeContact, setActiveContact } from '../store/slices/chatSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { styled } from 'styled-components';
 
@@ -14,7 +14,7 @@ const StiledListItem = styled.li`
 `;
 
 const ContactsList = () => {
-  const storeContacts = useSelector(contacts);
+  const storeContacts = useSelector(getContacts);
   const dispatch = useDispatch();
   console.log('storecontacts', storeContacts);
 

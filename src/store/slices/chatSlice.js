@@ -118,7 +118,7 @@ export const checkAuth = (state) => !!state.chat.idInstance;
 
 export const userData = (state) => state.chat;
 
-export const contacts = (state) => state.chat.contacts;
+export const getContacts = (state) => state.chat.contacts;
 
 export const activeContact = (state) => state.chat.activeContact;
 
