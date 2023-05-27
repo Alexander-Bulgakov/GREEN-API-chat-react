@@ -4,10 +4,20 @@ import axios from 'axios';
 export const sendMessage = createAsyncThunk('message/sendMessage', async (text, { getState }) => {
   const { message } = getState();
   console.log('text', text);
+  // const body = {
+  //   chatId: `${message.activeContact.phoneNumber}@c.us`,
+  //   message: text,
+  // };
+
+  //
+  const contact = message.contacts.find((contact) => contact.id === message.activeContactId);
+
   const body = {
-    chatId: `${message.activeContact.phoneNumber}@c.us`,
+    chatId: `${contact.phoneNumber}@c.us`,
     message: text,
   };
+  //
+
   try {
     console.log('thunk', message);
 
@@ -68,6 +78,7 @@ const initialState = {
     // },
   ],
   activeContact: null,
+  activeContactId: null,
 };
 
 const messageSlice = createSlice({
@@ -92,6 +103,9 @@ const messageSlice = createSlice({
     setActiveContact: (state, action) => {
       console.log('contacts from set', state.contacts);
       state.activeContact = state.contacts.find((contact) => contact.id === action.payload);
+      //
+      state.activeContactId = action.payload;
+      console.log('state.activeContactId ', state.activeContactId);
       console.log('store >> ', state.activeContact.phoneNumber);
     },
   },
@@ -99,8 +113,8 @@ const messageSlice = createSlice({
     [sendMessage.fulfilled]: (state, action) => {
       console.log('text', action.payload.text);
       console.log('data', action.payload.data);
-      state.activeContact.messages.push({ side: 'send', text: action.payload.text });
-      //data.idMessage
+      const contact = state.contacts.find((contact) => contact.id === state.activeContactId);
+      contact.messages.push({ side: 'send', text: action.payload.text });
     },
     [receiveNotification.fulfilled]: (state, action) => {
       console.log('receive >>> ', action.payload.data);
@@ -108,7 +122,6 @@ const messageSlice = createSlice({
         state.activeContact.messages.push({
           side: 'incoming',
           text: action.payload.data?.body?.messageData?.textMessageData?.textMessage,
-          // id: action.payload.data?.receiptId,
         });
         console.log('id >>> ', action.payload.data?.receiptId);
         deleteNotification(action.payload.data?.receiptId, state.idInstance, state.apiTokenInstance);
@@ -133,4 +146,15 @@ export const contacts = (state) => state.message.contacts;
 
 export const activeContact = (state) => state.message.activeContact;
 
-export const messages = (state) => state.message.activeContact?.messages;
+export const getMessages = (state) => {
+  // console.log('state from messages', state.message.activeContactId);
+  const contact = state.message.contacts.find((contact) => contact.id == state.message.activeContactId);
+  console.log('contact from messages', contact);
+  return !!contact ? contact.messages : [];
+  // if (!!contact) {
+  //   return contact.messages;
+  // } else {
+  //   return [];
+  // }
+  // state.message.activeContact?.messages;
+};

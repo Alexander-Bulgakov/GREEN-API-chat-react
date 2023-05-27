@@ -41,6 +41,7 @@ const InputGroup = () => {
         messages: [],
       };
       dispatch(addContact(user));
+      setPhoneNumber('');
     }
   };
   return (

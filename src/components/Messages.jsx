@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import { useSelector } from 'react-redux';
-import { messages } from '../store/slices/messageSlice';
+import { getMessages } from '../store/slices/messageSlice';
 import MessagesList from './MessagesList';
 
 const StyledMessages = styled.div`
@@ -13,7 +13,7 @@ const StyledMessages = styled.div`
 `;
 
 const Messages = () => {
-  const contactMessages = useSelector(messages);
+  const contactMessages = useSelector(getMessages);
   return (
     <StyledMessages>
       {!!contactMessages ? <MessagesList messagesList={contactMessages} /> : 'Сообщений нет'}
