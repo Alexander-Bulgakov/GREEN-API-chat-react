@@ -5,7 +5,7 @@ const { Outlet, Navigate } = require('react-router-dom');
 
 const PrivateRoute = () => {
   const isAuth = useSelector(checkAuth);
-  // const isAuth = true;
+
   return isAuth ? <Outlet /> : <Navigate to={'login'} />;
 };
 

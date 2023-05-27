@@ -53,7 +53,6 @@ const deleteNotification = async (id, idInstance, apiTokenInstance) => {
 const initialState = {
   idInstance: null,
   apiTokenInstance: null,
-  isAuth: false,
   contacts: [],
   activeContact: null,
   activeContactId: null,
@@ -65,10 +64,8 @@ const chatSlice = createSlice({
   reducers: {
     setReqParameters: (state, action) => {
       console.log('payload >>> ', action.payload);
-      state.isAuth = true;
       state.idInstance = action.payload.idInstance;
       state.apiTokenInstance = action.payload.apiTokenInstance;
-      console.log(state.isAuth);
     },
     logout: (state, action) => {
       console.log(action);
@@ -117,7 +114,7 @@ export default chatSlice.reducer;
 
 export const { setReqParameters, logout, addContact, setActiveContact } = chatSlice.actions;
 
-export const checkAuth = (state) => state.chat.isAuth;
+export const checkAuth = (state) => !!state.chat.idInstance;
 
 export const userData = (state) => state.chat;
 
