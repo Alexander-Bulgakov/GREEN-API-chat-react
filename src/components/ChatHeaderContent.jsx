@@ -2,7 +2,7 @@ import React from 'react';
 import { styled } from 'styled-components';
 import { StyledButton } from './ChatInputPannel';
 import { useDispatch } from 'react-redux';
-import { receiveNotification } from '../store/slices/messageSlice';
+import { receiveNotification } from '../store/slices/chatSlice';
 
 const StyledChatHeaderContent = styled.div`
   width: 100%;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { styled } from 'styled-components';
-import { activeContact } from '../store/slices/messageSlice';
+import { activeContact } from '../store/slices/chatSlice';
 import ChatHeaderContent from './ChatHeaderContent';
 
 const StyledChatHeader = styled.div`

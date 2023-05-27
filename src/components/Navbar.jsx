@@ -2,9 +2,9 @@ import React from 'react';
 import { styled } from 'styled-components';
 import Button from './Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { userData } from '../store/slices/messageSlice';
+import { userData } from '../store/slices/chatSlice';
 import { Link, useNavigate } from 'react-router-dom';
-import { logout } from '../store/slices/messageSlice';
+import { logout } from '../store/slices/chatSlice';
 
 const StyledNavBar = styled.div`
   padding: 0.5em 1em;

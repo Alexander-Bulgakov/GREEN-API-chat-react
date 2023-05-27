@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import { useSelector } from 'react-redux';
-import { getMessages } from '../store/slices/messageSlice';
+import { getMessages } from '../store/slices/chatSlice';
 import MessagesList from './MessagesList';
 
 const StyledMessages = styled.div`

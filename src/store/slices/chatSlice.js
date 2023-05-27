@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const sendMessage = createAsyncThunk('message/sendMessage', async (text, { getState }) => {
-  const { message } = getState();
+  const { chatState } = getState();
   console.log('text', text);
   // const body = {
   //   chatId: `${message.activeContact.phoneNumber}@c.us`,
@@ -10,7 +10,7 @@ export const sendMessage = createAsyncThunk('message/sendMessage', async (text, 
   // };
 
   //
-  const contact = message.contacts.find((contact) => contact.id === message.activeContactId);
+  const contact = chatState.contacts.find((contact) => contact.id === chatState.activeContactId);
 
   const body = {
     chatId: `${contact.phoneNumber}@c.us`,
@@ -19,10 +19,10 @@ export const sendMessage = createAsyncThunk('message/sendMessage', async (text, 
   //
 
   try {
-    console.log('thunk', message);
+    console.log('thunk', chatState);
 
     const { data } = await axios.post(
-      `https://api.green-api.com/waInstance${message.idInstance}/SendMessage/${message.apiTokenInstance}`,
+      `https://api.green-api.com/waInstance${chatState.idInstance}/SendMessage/${chatState.apiTokenInstance}`,
       body,
     );
     return { data, text };
@@ -33,9 +33,9 @@ export const sendMessage = createAsyncThunk('message/sendMessage', async (text, 
 
 export const receiveNotification = createAsyncThunk('message/receiveNotification', async (arg, { getState }) => {
   try {
-    const { message } = getState();
+    const { chatState } = getState();
     const data = await axios.get(
-      `https://api.green-api.com/waInstance${message.idInstance}/receiveNotification/${message.apiTokenInstance}`,
+      `https://api.green-api.com/waInstance${chatState.idInstance}/receiveNotification/${chatState.apiTokenInstance}`,
     );
     return data;
   } catch (e) {
@@ -45,7 +45,7 @@ export const receiveNotification = createAsyncThunk('message/receiveNotification
 
 const deleteNotification = async (id, idInstance, apiTokenInstance) => {
   try {
-    // const { message } = getState();
+    // const { chatState } = getState();
     const data = await axios.delete(
       `https://api.green-api.com/waInstance${idInstance}/deleteNotification/${apiTokenInstance}/${id}
       `,
@@ -81,8 +81,8 @@ const initialState = {
   activeContactId: null,
 };
 
-const messageSlice = createSlice({
-  name: 'message',
+const chatSlice = createSlice({
+  name: 'chat',
   initialState,
   reducers: {
     setReqParameters: (state, action) => {
@@ -134,21 +134,21 @@ const messageSlice = createSlice({
   },
 });
 
-export default messageSlice.reducer;
+export default chatSlice.reducer;
 
-export const { setReqParameters, logout, addContact, setActiveContact } = messageSlice.actions;
+export const { setReqParameters, logout, addContact, setActiveContact } = chatSlice.actions;
 
-export const selectIsAuth = (state) => state.message.isAuth;
+export const selectIsAuth = (state) => state.chat.isAuth;
 
-export const userData = (state) => state.message;
+export const userData = (state) => state.chat;
 
-export const contacts = (state) => state.message.contacts;
+export const contacts = (state) => state.chat.contacts;
 
-export const activeContact = (state) => state.message.activeContact;
+export const activeContact = (state) => state.chat.activeContact;
 
 export const getMessages = (state) => {
-  // console.log('state from messages', state.message.activeContactId);
-  const contact = state.message.contacts.find((contact) => contact.id == state.message.activeContactId);
+  // console.log('state from messages', state.chat.activeContactId);
+  const contact = state.chat.contacts.find((contact) => contact.id == state.chat.activeContactId);
   console.log('contact from messages', contact);
   return !!contact ? contact.messages : [];
   // if (!!contact) {

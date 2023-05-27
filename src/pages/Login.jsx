@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Container from '../components/Container';
 import Wrapper from '../components/Wrapper';
 import { useDispatch } from 'react-redux';
-import { setReqParameters } from '../store/slices/messageSlice';
+import { setReqParameters } from '../store/slices/chatSlice';
 import { useNavigate } from 'react-router-dom';
 import ChatContainer from '../components/ChatContainer';
 import Button from '../components/Button';

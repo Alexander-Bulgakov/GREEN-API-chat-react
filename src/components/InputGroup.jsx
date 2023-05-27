@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../store/slices/messageSlice';
+import { addContact } from '../store/slices/chatSlice';
 
 const StyledInputGroup = styled.form`
   height: 3em;

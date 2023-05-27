@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
-import { sendMessage, activeContact, receiveNotification } from '../store/slices/messageSlice';
+import { sendMessage, activeContact, receiveNotification } from '../store/slices/chatSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const StyledChatInputPannel = styled.div`

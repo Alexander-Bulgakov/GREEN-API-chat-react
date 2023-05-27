@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { selectIsAuth } from '../store/slices/messageSlice';
+import { selectIsAuth } from '../store/slices/chatSlice';
 
 const { Outlet, Navigate } = require('react-router-dom');
 

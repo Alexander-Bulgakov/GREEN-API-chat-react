@@ -1,5 +1,5 @@
 import React from 'react';
-import { contacts, activeContact, setActiveContact } from '../store/slices/messageSlice';
+import { contacts, activeContact, setActiveContact } from '../store/slices/chatSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { styled } from 'styled-components';
 
