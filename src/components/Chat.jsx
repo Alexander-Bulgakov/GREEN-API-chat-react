@@ -11,6 +11,7 @@ const StyledChat = styled.div`
   flex-direction: column;
   background-color: #eae6df;
 `;
+
 const Chat = () => {
   return (
     <StyledChat>

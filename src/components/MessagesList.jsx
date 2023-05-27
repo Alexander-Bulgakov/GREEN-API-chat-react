@@ -6,12 +6,14 @@ const StyledMessagesList = styled.ul`
   flex-direction: column;
   gap: 0.5em;
 `;
+
 const StyledMessage = styled.li`
   background-color: white;
   padding: 0.3em 1em;
   align-self: ${(props) => (props.side === 'send' ? 'end' : 'start')};
   border-radius: ${(props) => (props.side === 'send' ? '10px 0px 10px 10px' : '0px 10px 10px 10px')};
 `;
+
 const MessagesList = ({ messagesList }) => {
   return (
     <StyledMessagesList>

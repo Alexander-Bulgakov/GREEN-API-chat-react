@@ -38,7 +38,6 @@ export const StyledButton = styled.button`
 
 const ChatInputPannel = () => {
   const [text, setText] = useState('');
-
   const dispatch = useDispatch();
   const contact = useSelector(activeContact);
 
@@ -48,7 +47,6 @@ const ChatInputPannel = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target);
 
     if (!!text) {
       dispatch(sendMessage(text));

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Container from '../components/Container';
 import Wrapper from '../components/Wrapper';
 import { useDispatch } from 'react-redux';
 import { setReqParameters } from '../store/slices/chatSlice';
@@ -32,27 +31,14 @@ const StyledInput = styled.input`
   }
 `;
 
-const StyledButton = styled.button`
-  height: 2rem;
-  background-color: #00a884;
-  border-radius: 5px;
-  font-size: 1rem;
-  color: white;
-  &:hover {
-    background-color: #02a698;
-  }
-`;
-
 const Login = () => {
   const [idInstance, setidInstance] = useState('');
   const [apiTokenInstance, setApiTokenInstance] = useState('');
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(idInstance, apiTokenInstance);
     dispatch(setReqParameters({ idInstance, apiTokenInstance }));
     navigate('/');
   };

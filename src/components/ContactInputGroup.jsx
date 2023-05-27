@@ -16,13 +16,14 @@ const StyledButton = styled.button`
   height: 100%;
   padding: 0.2em 0.3em;
 `;
+
 const StyledInput = styled.input`
   background-color: #f0f2f5;
   height: 100%;
   border-radius: 0.5em;
 `;
 
-const InputGroup = () => {
+const ContactInputGroup = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const dispatch = useDispatch();
 
@@ -44,6 +45,7 @@ const InputGroup = () => {
       setPhoneNumber('');
     }
   };
+
   return (
     <StyledInputGroup onSubmit={handleSubmit}>
       <StyledInput
@@ -57,4 +59,4 @@ const InputGroup = () => {
   );
 };
 
-export default InputGroup;
+export default ContactInputGroup;

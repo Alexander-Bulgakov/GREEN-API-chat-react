@@ -8,6 +8,7 @@ export const sendMessage = createAsyncThunk('chat/sendMessage', async (text, { g
 
   const contact = chat.contacts.find((contact) => contact.id === chat.activeContactId);
   console.log('contact form send', contact);
+
   const body = {
     chatId: `${contact.phoneNumber}@c.us`,
     message: text,
@@ -20,6 +21,7 @@ export const sendMessage = createAsyncThunk('chat/sendMessage', async (text, { g
       `https://api.green-api.com/waInstance${chat.idInstance}/SendMessage/${chat.apiTokenInstance}`,
       body,
     );
+
     return { data, text };
   } catch (e) {
     console.log(e);
@@ -29,9 +31,11 @@ export const sendMessage = createAsyncThunk('chat/sendMessage', async (text, { g
 export const receiveNotification = createAsyncThunk('message/receiveNotification', async (arg, { getState }) => {
   try {
     const { chat } = getState();
+
     const data = await axios.get(
       `https://api.green-api.com/waInstance${chat.idInstance}/receiveNotification/${chat.apiTokenInstance}`,
     );
+
     return data;
   } catch (e) {
     console.log(e);
@@ -45,6 +49,7 @@ const deleteNotification = async (id, idInstance, apiTokenInstance) => {
       `,
     );
     console.log('deleteNotification >>> ', data);
+
     return data;
   } catch (e) {
     console.log(e);
@@ -116,7 +121,7 @@ export const { setReqParameters, logout, addContact, setActiveContact } = chatSl
 
 export const checkAuth = (state) => !!state.chat.idInstance;
 
-export const userData = (state) => state.chat;
+export const getUserData = (state) => state.chat;
 
 export const getContacts = (state) => state.chat.contacts;
 

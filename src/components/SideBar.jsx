@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from 'styled-components';
 import Navbar from './Navbar';
-import InputGroup from './InputGroup';
+import ContactInputGroup from './ContactInputGroup';
 import ContactsList from './ContactsList';
 
 const StyledSideBar = styled.div`
@@ -10,12 +10,14 @@ const StyledSideBar = styled.div`
   height: 100%;
 `;
 
-export default function SideBar() {
+const SideBar = () => {
   return (
     <StyledSideBar>
       <Navbar />
-      <InputGroup />
+      <ContactInputGroup />
       <ContactsList />
     </StyledSideBar>
   );
-}
+};
+
+export default SideBar;

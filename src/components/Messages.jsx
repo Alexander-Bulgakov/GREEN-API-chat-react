@@ -14,6 +14,7 @@ const StyledMessages = styled.div`
 
 const Messages = () => {
   const contactMessages = useSelector(getMessages);
+
   return (
     <StyledMessages>
       {!!contactMessages ? <MessagesList messagesList={contactMessages} /> : 'Сообщений нет'}

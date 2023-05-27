@@ -1,10 +1,10 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App";
-import { createGlobalStyle } from "styled-components";
-import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
-import store from "./store/store";
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App';
+import { createGlobalStyle } from 'styled-components';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import store from './store/store';
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -102,15 +102,15 @@ a {
 }
 `;
 
-const container = document.getElementById("root");
+const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <GlobalStyle />
-        <App />
-      </Provider>
-    </BrowserRouter>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <BrowserRouter>
+    <Provider store={store}>
+      <GlobalStyle />
+      <App />
+    </Provider>
+  </BrowserRouter>,
+  // </React.StrictMode>
 );

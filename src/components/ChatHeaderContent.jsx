@@ -13,9 +13,11 @@ const StyledChatHeaderContent = styled.div`
 
 const ChatHeaderContent = ({ phone }) => {
   const dispatch = useDispatch();
+
   const handleClick = () => {
     dispatch(receiveNotification());
   };
+
   return (
     <StyledChatHeaderContent>
       <span>{phone}</span>

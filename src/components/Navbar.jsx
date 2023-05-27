@@ -1,9 +1,8 @@
 import React from 'react';
 import { styled } from 'styled-components';
-import Button from './Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { userData } from '../store/slices/chatSlice';
-import { Link, useNavigate } from 'react-router-dom';
+import { getUserData } from '../store/slices/chatSlice';
+import { useNavigate } from 'react-router-dom';
 import { logout } from '../store/slices/chatSlice';
 
 const StyledNavBar = styled.div`
@@ -15,7 +14,7 @@ const StyledNavBar = styled.div`
   height: 3em;
 `;
 
-const IdHeader = styled.h3`
+const StyledNavBarHeader = styled.h3`
   font-weight: bold;
 `;
 
@@ -27,22 +26,22 @@ const StyledButton = styled.button`
   color: black;
 `;
 
-export default function Navbar() {
-  const user = useSelector(userData);
+const Navbar = () => {
+  const user = useSelector(getUserData);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    console.log('clicked');
     dispatch(logout());
-
     navigate('/login');
   };
+
   return (
     <StyledNavBar>
-      <IdHeader>idInstance: {user.idInstance}</IdHeader>
-      {/* <StyledButton>Выйти</StyledButton> */}
+      <StyledNavBarHeader>idInstance: {user.idInstance}</StyledNavBarHeader>
       <StyledButton onClick={handleLogout}>Выйти</StyledButton>
     </StyledNavBar>
   );
-}
+};
+
+export default Navbar;

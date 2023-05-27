@@ -1,14 +1,14 @@
 import React from 'react';
-import { getContacts, activeContact, setActiveContact } from '../store/slices/chatSlice';
+import { getContacts, setActiveContact } from '../store/slices/chatSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { styled } from 'styled-components';
 
-const StiledListItem = styled.li`
+const StyledListItem = styled.li`
   display: block;
   height: 2em;
   border-bottom: solid 1px #f0f2f5;
   &:hover {
-    background-color: #f0f2f5;
+    background-color: #f0f2f5;LoginButton
     cursor: pointer;
   }
 `;
@@ -16,12 +16,8 @@ const StiledListItem = styled.li`
 const ContactsList = () => {
   const storeContacts = useSelector(getContacts);
   const dispatch = useDispatch();
-  console.log('storecontacts', storeContacts);
 
   const handleChange = (id) => {
-    console.log(id);
-    console.log('storecontacts', storeContacts);
-
     dispatch(setActiveContact(id));
   };
 
@@ -30,12 +26,12 @@ const ContactsList = () => {
       {storeContacts.length === 0
         ? 'Список контактов'
         : storeContacts.map((contact) => (
-            <StiledListItem
+            <StyledListItem
               key={contact.id}
               onClick={() => handleChange(contact.id)}
             >
               {contact.phoneNumber}
-            </StiledListItem>
+            </StyledListItem>
           ))}
     </ul>
   );
