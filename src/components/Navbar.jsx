@@ -31,7 +31,6 @@ export default function Navbar() {
   const user = useSelector(userData);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // console.log(user);
 
   const handleLogout = () => {
     console.log('clicked');

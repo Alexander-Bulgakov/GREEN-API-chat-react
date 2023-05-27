@@ -1,6 +1,5 @@
-import React from "react";
-import styled from "styled-components";
-// import Wrapper from './Wrapper';
+import React from 'react';
+import styled from 'styled-components';
 
 const StyledContainer = styled.div`
   background-color: #dee5fb;

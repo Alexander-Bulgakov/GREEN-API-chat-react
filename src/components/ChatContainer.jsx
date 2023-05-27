@@ -1,11 +1,10 @@
-import React from "react";
-import { styled } from "styled-components";
+import React from 'react';
+import { styled } from 'styled-components';
 
 const StyledContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  // z-index: 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -20,7 +19,6 @@ const StyledContainer = styled.div`
 const StyledContainerHeader = styled.div`
   position: fixed;
   top: 0;
-  // z-index: -1;
   width: 100%;
   height: 127px;
   background-color: #00a884;
@@ -31,7 +29,6 @@ const ChatContainer = ({ children }) => {
     <StyledContainer>
       <StyledContainerHeader />
       {children}
-      {/* <StyledBody /> */}
     </StyledContainer>
   );
 };

@@ -13,7 +13,6 @@ const StyledMessage = styled.li`
   border-radius: ${(props) => (props.side === 'send' ? '10px 0px 10px 10px' : '0px 10px 10px 10px')};
 `;
 const MessagesList = ({ messagesList }) => {
-  // console.log('messagesList', messagesList);
   return (
     <StyledMessagesList>
       {messagesList.length === 0
