@@ -36,7 +36,7 @@ export const receiveNotification = createAsyncThunk('message/receiveNotification
   try {
     const { chat } = getState();
     const data = await axios.get(
-      `https://api.green-api.com/waInstance${chatState.idInstance}/receiveNotification/${chatState.apiTokenInstance}`,
+      `https://api.green-api.com/waInstance${chat.idInstance}/receiveNotification/${chat.apiTokenInstance}`,
     );
     return data;
   } catch (e) {
@@ -120,7 +120,9 @@ const chatSlice = createSlice({
     [receiveNotification.fulfilled]: (state, action) => {
       console.log('receive >>> ', action.payload.data);
       if (action.payload.data) {
-        state.activeContact.messages.push({
+        const contact = state.contacts.find((contact) => contact.id === state.activeContactId);
+        console.log('contact from receive full', contact);
+        contact.messages.push({
           side: 'incoming',
           text: action.payload.data?.body?.messageData?.textMessageData?.textMessage,
         });
