@@ -7,9 +7,9 @@ const StyledListItem = styled.li`
   display: block;
   height: 2em;
   border-bottom: solid 1px #f0f2f5;
+  cursor: pointer;
   &:hover {
-    background-color: #f0f2f5;LoginButton
-    cursor: pointer;
+    background-color: #f0f2f5;
   }
 `;
 

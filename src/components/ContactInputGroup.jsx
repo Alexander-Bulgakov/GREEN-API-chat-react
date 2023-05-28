@@ -53,6 +53,7 @@ const ContactInputGroup = () => {
         type="text"
         value={phoneNumber}
         onChange={handleChange}
+        placeholder="7XXXXXXXXXX"
       />
       <StyledButton type="submit">Добавить номер</StyledButton>
     </StyledInputGroup>
